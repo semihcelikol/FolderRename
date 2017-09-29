@@ -18,5 +18,5 @@ Bu kez seçtiğiniz sayıyı dosyaların sonuna yazarak isimleri değiştirir.
 <h3>4- Otomatik Sıralı Değişim 3</h3>
 Seçilen tüm dosyalarda dönüp mevcut ismi siler ve seçtiğiniz sayıdan başlayarak dosya adına sıralı olarak sayıyı yazar.
 "Örneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosya adlarını silerek, 1'den başlayıp 1,2,3.. yapar ve en son 10 yazıp bitirir."
-<br><p>
+
 4.Örnek detay gif link : http://semihcelikol.com/wp-content/uploads/2017/04/FileNameAutoChange.gif
