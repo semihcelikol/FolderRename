@@ -13,17 +13,17 @@ namespace FolderRename
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        GeneralProcesses generalProcesses = new GeneralProcesses();
+        MessageHelper messageHelper = new MessageHelper();
         public string[] selectedFilePath;
         string directoryName;
         string fileName, fromFile;
         string toFile;
         FileInfo fi;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
 
         private void btnFileSelect_Click(object sender, EventArgs e)
         {
@@ -33,19 +33,41 @@ namespace FolderRename
 
             selectedFilePath = openFileDialog1.FileNames;
 
-            string[] file = selectedFilePath;
-
-            for (int i = 0; i < file.Length; i++)
+            foreach (var item in selectedFilePath)
             {
-                listBoxFirstFile.Items.Add(file[i]);
+                listBoxFirstFile.Items.Add(item);
             }
         }
 
         private void btnChange_Click(object sender, EventArgs e)
         {
-            #region Manuel isim değiştirme işlemleri
-            //Manuel isim değiştirme işlemleri
             if (panelManuel.Enabled)
+            {
+                this.manuelChange();
+            }
+
+            if (panelAuto1.Enabled)
+            {
+                this.autoChange1();
+            }
+
+            if (panelAuto2.Enabled)
+            {
+                this.autoChange2();
+            }
+
+            if (panelAuto3.Enabled)
+            {
+                this.autoChange3();
+            }
+        }
+
+        /// <summary>
+        /// Manuel isim değiştirme işlemleri
+        /// </summary>
+        private void manuelChange()
+        {
+            try
             {
                 if (checkBoxManuel.Checked)
                 {
@@ -55,28 +77,36 @@ namespace FolderRename
 
                         if (File.Exists(selectedRecord))
                         {
-                            File.Move(selectedRecord, txtManuel.Text);
-                            generalProcesses.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+                            File.Move(selectedRecord, txtManuel.Text + txtManuelExtension.Text);
+                            messageHelper.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+
+                            //Değişen hali listBox'a yazılır.
                             listBoxChangeFile.Items.Add(txtManuel.Text);
                             listBoxFirstFile.Items.Clear();
                         }
                         else
                         {
-                            generalProcesses.messageErrorShow("Başarısız terkar deneyin.", "HATA");
+                            messageHelper.messageErrorShow("Başarısız terkar deneyin.", "HATA");
                         }
                     }
                     else
                     {
-                        generalProcesses.messageErrorShow("Boş geçtiniz","HATA");
+                        messageHelper.messageErrorShow("Boş geçtiniz", "HATA");
                     }
                 }
             }
-            //
-            #endregion
+            catch (Exception ex)
+            {
+                messageHelper.messageErrorShow(ex.Message, "Hata");
+            }
+        }
 
-            #region Otomatik isim değiştirme işlemleri 1
-            //Otomatik isim değiştirme işlemleri 1
-            if (panelAuto1.Enabled)
+        /// <summary>
+        /// Otomatik isim değiştirme işlemleri 1
+        /// </summary>
+        private void autoChange1()
+        {
+            try
             {
                 if (checkBoxAutoChange1.Checked)
                 {
@@ -100,31 +130,37 @@ namespace FolderRename
                             autoChangeValue++;
                             listBoxChangeFile.Items.Add(toFile);
                         }
-                        generalProcesses.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+                        messageHelper.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
                         cbAutoChange1.Text = string.Empty;
                         listBoxFirstFile.Items.Clear();
                     }
                     else
                     {
-                        generalProcesses.messageErrorShow("Boş geçtiniz", "HATA");
+                        messageHelper.messageErrorShow("Boş geçtiniz", "HATA");
                     }
                 }
             }
-            //
-            #endregion
+            catch (Exception ex)
+            {
+                messageHelper.messageErrorShow(ex.Message, "Hata");
+            }
+        }
 
-            #region Otomatik isim değiştirme işlemleri 2
-            //Otomatik isim değiştirme işlemleri 2
-            if (panelAuto2.Enabled)
+        /// <summary>
+        /// Otomatik isim değiştirme işlemleri 2
+        /// </summary>
+        private void autoChange2()
+        {
+            try
             {
                 if (checkBoxAutoChange2.Checked)
                 {
-                    if (cbAutoChange2.Text != string.Empty && listBoxFirstFile.Items.Count != 0 )
+                    if (cbAutoChange2.Text != string.Empty && listBoxFirstFile.Items.Count != 0)
                     {
                         int autoChangeValue = Convert.ToInt32(cbAutoChange2.Text);
                         int listItemIndexOf;
                         string fromFile, toFile, toFile2;
-                        string subStrFile,subStrFile2;
+                        string subStrFile, subStrFile2;
 
                         //Seçili dosyalarda dönüp, sırayla dosya isimlerinin başına sayacı yazar.
                         foreach (string item2 in listBoxFirstFile.Items)
@@ -133,7 +169,7 @@ namespace FolderRename
 
                             //dosya da ki son slash işaretinin indexi alınır.
                             listItemIndexOf = fromFile.LastIndexOf("\\");
-                            
+
                             //listItemIndexOf + 1 ekleyip son slahtan sonra ki dosya adını alıyoruz.
                             subStrFile = fromFile.Substring(1 + listItemIndexOf).ToString();
                             //Slash ile Nokta arasında ki veri alınır.
@@ -151,22 +187,28 @@ namespace FolderRename
                             listBoxChangeFile.Items.Add(toFile2);
                             autoChangeValue++;
                         }
-                        generalProcesses.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+                        messageHelper.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
                         cbAutoChange2.Text = string.Empty;
                         listBoxFirstFile.Items.Clear();
                     }
                     else
                     {
-                        generalProcesses.messageErrorShow("Boş geçtiniz", "HATA");
+                        messageHelper.messageErrorShow("Boş geçtiniz", "HATA");
                     }
                 }
             }
-            //
-            #endregion
+            catch (Exception ex)
+            {
+                messageHelper.messageErrorShow(ex.Message, "Hata");
+            }
+        }
 
-            #region Otomatik isim değiştirme işlemleri 3
-            //Otomatik isim değiştirme işlemleri 3
-            if (panelAuto3.Enabled)
+        /// <summary>
+        /// Otomatik isim değiştirme işlemleri 3
+        /// </summary>
+        private void autoChange3()
+        {
+            try
             {
                 if (checkBoxAutoChange3.Checked)
                 {
@@ -180,7 +222,7 @@ namespace FolderRename
                             fi = new FileInfo(item3);
                             fromFile = fi.FullName;
                             directoryName = fi.DirectoryName;
-                            
+
                             toFile = autoChangeValue.ToString() + fi.Extension;
                             toFile = directoryName + @"\" + toFile;
 
@@ -190,7 +232,7 @@ namespace FolderRename
                             listBoxChangeFile.Items.Add(toFile);
                         }
 
-                        generalProcesses.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+                        messageHelper.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
 
                         listBoxFirstFile.Items.Clear();
                         cbAutoChange3.Text = string.Empty;
@@ -198,16 +240,29 @@ namespace FolderRename
                     }
                     else
                     {
-                        generalProcesses.messageErrorShow("Boş geçtiniz", "HATA");
+                        messageHelper.messageErrorShow("Boş geçtiniz", "HATA");
                     }
                 }
             }
-            //
-            #endregion
+            catch (Exception ex)
+            {
+                messageHelper.messageErrorShow(ex.Message, "Hata");
+            }
+            
         }
 
         private void listBoxFirstFile_MouseClick(object sender, MouseEventArgs e)
         {
+            this.txtManuelTextWrite();
+        }
+
+        /// <summary>
+        /// Manuel değişim ile ilgili TextBox'lar doldurulur.
+        /// </summary>
+        private void txtManuelTextWrite()
+        {
+            string fileExtension = string.Empty;
+            
             if (listBoxFirstFile.SelectedIndex == -1)
             {
                 lblWarning.Visible = true;
@@ -217,8 +272,17 @@ namespace FolderRename
             {
                 lblWarning.Visible = false;
                 lblWarning.Text = "";
-                string secilenkayit = listBoxFirstFile.SelectedItem.ToString();
-                txtManuel.Text = secilenkayit;
+
+                //En sonda ki .(nokta) işaretinin indexi alınıyor.
+                int lastIndexChar = listBoxFirstFile.SelectedItem.ToString().LastIndexOf(".");
+
+                //Dosya tam yolu ve adı txtManuel TextBox'ına yazılır.
+                string baseFile = listBoxFirstFile.SelectedItem.ToString().Substring(0, lastIndexChar);
+                txtManuel.Text = baseFile;
+
+                //Dosya uzantısı txtManuelExtension TextBox'ına yazılır.
+                fileExtension = listBoxFirstFile.SelectedItem.ToString().Substring(lastIndexChar);
+                txtManuelExtension.Text = fileExtension;
             }
         }
 
@@ -227,14 +291,14 @@ namespace FolderRename
             System.Diagnostics.Process.Start("mailto:semihcelikol@outlook.com");
         }
 
-        private void çıkışToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void hakkındaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            generalProcesses.messageInformationShow("Ücretsiz Dosya isimlerini değiştirme programıdır.\nVersion 3\nsemihcelikol.com", "HAKKINDA");
+            messageHelper.messageInformationShow("Ücretsiz Dosya isimlerini değiştirme programıdır.\nVersion 3\nsemihcelikol.com", "HAKKINDA");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -244,14 +308,14 @@ namespace FolderRename
             txtManuel.Clear();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnInformatin1_Click(object sender, EventArgs e)
         {
-            generalProcesses.messageInformationShow("Seçtiğiniz dosyaların başına, seçtiğiniz sayıdan başlayarak, seçilen dosya kadar o sayıyı dosya isminin başına koyup ekler.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosyaların başına 1'den başlayıp 1dosya,2dosya,3dosya... yaparak 10dosya yazıp bitirir.", "Nedir ?");
+            messageHelper.messageInformationShow("Seçtiğiniz dosyaların başına, seçtiğiniz sayıdan başlayarak, seçilen dosya kadar o sayıyı dosya isminin başına koyup ekler.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosyaların başına 1'den başlayıp 1dosya,2dosya,3dosya... yaparak 10dosya yazıp bitirir.", "Nedir ?");
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btnInformatin2_Click(object sender, EventArgs e)
         {
-            generalProcesses.messageInformationShow("Seçtiğiniz dosyaların sonuna, seçtiğiniz sayıdan başlayarak, seçilen dosya kadar o sayıyı dosya isminin sonuna koyup ekler.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosyaların başına 1'den başlayıp dosya1,dosy2a,dosya3... yaparak dosya10 yazıp bitirir.", "Nedir ?");
+            messageHelper.messageInformationShow("Seçtiğiniz dosyaların sonuna, seçtiğiniz sayıdan başlayarak, seçilen dosya kadar o sayıyı dosya isminin sonuna koyup ekler.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosyaların başına 1'den başlayıp dosya1,dosy2a,dosya3... yaparak dosya10 yazıp bitirir.", "Nedir ?");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -333,9 +397,30 @@ namespace FolderRename
             }
         }
 
+        private void listBoxFirstFile_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (listBoxFirstFile.SelectedIndex != -1)
+            {
+                if (e.KeyChar == (char)Keys.Back
+                || e.KeyChar == (char)Keys.Delete
+                || e.KeyChar == (char)Keys.Escape)
+                {
+                    listBoxFirstFile.Items.RemoveAt(listBoxFirstFile.SelectedIndex);
+                }
+            }
+        }
+
+        private void listBoxFirstFile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxFirstFile.SelectedIndex != -1)
+            {
+                this.txtManuelTextWrite();
+            }
+        }
+
         private void btnInformatin3_Click(object sender, EventArgs e)
         {
-            generalProcesses.messageInformationShow("Seçilen tüm dosyalarda dönüp, mevcut ismi siler ve seçtiğiniz sayıdan başlayarak dosya adına sıralı olarak sayıyı yazar.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var.Bu dosya adlarını 1'den başlayıp 1,2,3.. yaparak 10 yazıp bitirir.", "Nedir ?");
+            messageHelper.messageInformationShow("Seçilen tüm dosyalarda dönüp, mevcut ismi siler ve seçtiğiniz sayıdan başlayarak dosya adına sıralı olarak sayıyı yazar.\n\nÖrneğin 1'i seçtiğiniz ve 10 tane dosyanız var.Bu dosya adlarını 1'den başlayıp 1,2,3.. yaparak 10 yazıp bitirir.", "Nedir ?");
         }
     }
 }

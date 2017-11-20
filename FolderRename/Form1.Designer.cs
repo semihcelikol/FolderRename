@@ -64,6 +64,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbAutoChange1 = new System.Windows.Forms.ComboBox();
             this.panelManuel = new System.Windows.Forms.Panel();
+            this.txtManuelExtension = new System.Windows.Forms.TextBox();
             this.checkBoxManuel = new System.Windows.Forms.CheckBox();
             this.txtManuel = new System.Windows.Forms.TextBox();
             this.menuStripTop = new System.Windows.Forms.MenuStrip();
@@ -84,7 +85,7 @@
             // 
             this.btnFileSelect.Location = new System.Drawing.Point(325, 247);
             this.btnFileSelect.Name = "btnFileSelect";
-            this.btnFileSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnFileSelect.Size = new System.Drawing.Size(189, 23);
             this.btnFileSelect.TabIndex = 0;
             this.btnFileSelect.Text = "Seç";
             this.btnFileSelect.UseVisualStyleBackColor = true;
@@ -92,8 +93,8 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Multiselect = true;
+            this.openFileDialog1.Title = "Dosya seçimi";
             // 
             // btnChange
             // 
@@ -108,13 +109,16 @@
             // listBoxFirstFile
             // 
             this.listBoxFirstFile.FormattingEnabled = true;
+            this.listBoxFirstFile.HorizontalScrollbar = true;
             this.listBoxFirstFile.Location = new System.Drawing.Point(15, 32);
             this.listBoxFirstFile.Name = "listBoxFirstFile";
             this.listBoxFirstFile.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxFirstFile.Size = new System.Drawing.Size(449, 199);
+            this.listBoxFirstFile.Size = new System.Drawing.Size(499, 199);
             this.listBoxFirstFile.TabIndex = 6;
             this.toolTip1.SetToolTip(this.listBoxFirstFile, "CTRL Tuşuna basılı tutarak 1\'den fazla dosya seçebilirsiniz.");
             this.listBoxFirstFile.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxFirstFile_MouseClick);
+            this.listBoxFirstFile.SelectedIndexChanged += new System.EventHandler(this.listBoxFirstFile_SelectedIndexChanged);
+            this.listBoxFirstFile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBoxFirstFile_KeyPress);
             // 
             // lblWarningFileSelected
             // 
@@ -128,15 +132,15 @@
             // listBoxChangeFile
             // 
             this.listBoxChangeFile.FormattingEnabled = true;
-            this.listBoxChangeFile.Location = new System.Drawing.Point(498, 32);
+            this.listBoxChangeFile.Location = new System.Drawing.Point(520, 32);
             this.listBoxChangeFile.Name = "listBoxChangeFile";
-            this.listBoxChangeFile.Size = new System.Drawing.Size(449, 199);
+            this.listBoxChangeFile.Size = new System.Drawing.Size(472, 199);
             this.listBoxChangeFile.TabIndex = 10;
             // 
             // lblChangefile
             // 
             this.lblChangefile.AutoSize = true;
-            this.lblChangefile.Location = new System.Drawing.Point(495, 15);
+            this.lblChangefile.Location = new System.Drawing.Point(517, 15);
             this.lblChangefile.Name = "lblChangefile";
             this.lblChangefile.Size = new System.Drawing.Size(67, 13);
             this.lblChangefile.TabIndex = 11;
@@ -243,9 +247,9 @@
             this.panelAuto3.Controls.Add(this.checkBoxAutoChange3);
             this.panelAuto3.Controls.Add(this.btnInformatin3);
             this.panelAuto3.Controls.Add(this.cbAutoChange3);
-            this.panelAuto3.Location = new System.Drawing.Point(15, 491);
+            this.panelAuto3.Location = new System.Drawing.Point(15, 488);
             this.panelAuto3.Name = "panelAuto3";
-            this.panelAuto3.Size = new System.Drawing.Size(449, 62);
+            this.panelAuto3.Size = new System.Drawing.Size(499, 62);
             this.panelAuto3.TabIndex = 35;
             // 
             // label1
@@ -317,7 +321,7 @@
             this.panelAuto2.Controls.Add(this.cbAutoChange2);
             this.panelAuto2.Location = new System.Drawing.Point(15, 423);
             this.panelAuto2.Name = "panelAuto2";
-            this.panelAuto2.Size = new System.Drawing.Size(449, 62);
+            this.panelAuto2.Size = new System.Drawing.Size(499, 62);
             this.panelAuto2.TabIndex = 34;
             // 
             // label8
@@ -359,7 +363,7 @@
             this.btnInformatin2.Text = "?";
             this.toolTip1.SetToolTip(this.btnInformatin2, "Bu nedir, öğrenin");
             this.btnInformatin2.UseVisualStyleBackColor = true;
-            this.btnInformatin2.Click += new System.EventHandler(this.button7_Click);
+            this.btnInformatin2.Click += new System.EventHandler(this.btnInformatin2_Click);
             // 
             // cbAutoChange2
             // 
@@ -389,7 +393,7 @@
             this.panelAuto1.Controls.Add(this.cbAutoChange1);
             this.panelAuto1.Location = new System.Drawing.Point(15, 358);
             this.panelAuto1.Name = "panelAuto1";
-            this.panelAuto1.Size = new System.Drawing.Size(449, 62);
+            this.panelAuto1.Size = new System.Drawing.Size(499, 62);
             this.panelAuto1.TabIndex = 33;
             // 
             // checkBoxAutoChange1
@@ -413,7 +417,7 @@
             this.btnInformatin1.Text = "?";
             this.toolTip1.SetToolTip(this.btnInformatin1, "Bu nedir, öğrenin");
             this.btnInformatin1.UseVisualStyleBackColor = true;
-            this.btnInformatin1.Click += new System.EventHandler(this.button6_Click);
+            this.btnInformatin1.Click += new System.EventHandler(this.btnInformatin1_Click);
             // 
             // label5
             // 
@@ -454,12 +458,20 @@
             // 
             // panelManuel
             // 
+            this.panelManuel.Controls.Add(this.txtManuelExtension);
             this.panelManuel.Controls.Add(this.checkBoxManuel);
             this.panelManuel.Controls.Add(this.txtManuel);
             this.panelManuel.Location = new System.Drawing.Point(15, 293);
             this.panelManuel.Name = "panelManuel";
-            this.panelManuel.Size = new System.Drawing.Size(449, 59);
+            this.panelManuel.Size = new System.Drawing.Size(499, 62);
             this.panelManuel.TabIndex = 32;
+            // 
+            // txtManuelExtension
+            // 
+            this.txtManuelExtension.Location = new System.Drawing.Point(444, 30);
+            this.txtManuelExtension.Name = "txtManuelExtension";
+            this.txtManuelExtension.Size = new System.Drawing.Size(52, 20);
+            this.txtManuelExtension.TabIndex = 36;
             // 
             // checkBoxManuel
             // 
@@ -477,7 +489,7 @@
             // 
             this.txtManuel.Location = new System.Drawing.Point(13, 30);
             this.txtManuel.Name = "txtManuel";
-            this.txtManuel.Size = new System.Drawing.Size(424, 20);
+            this.txtManuel.Size = new System.Drawing.Size(425, 20);
             this.txtManuel.TabIndex = 8;
             this.toolTip1.SetToolTip(this.txtManuel, "Manuel değişim için, burayı kullanın");
             // 
@@ -505,14 +517,14 @@
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
             this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
-            this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.çıkışToolStripMenuItem_Click);
+            this.çıkışToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // hakkındaToolStripMenuItem
             // 
             this.hakkındaToolStripMenuItem.Name = "hakkındaToolStripMenuItem";
             this.hakkındaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.hakkındaToolStripMenuItem.Text = "Hakkında";
-            this.hakkındaToolStripMenuItem.Click += new System.EventHandler(this.hakkındaToolStripMenuItem_Click);
+            this.hakkındaToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -590,6 +602,7 @@
         private System.Windows.Forms.CheckBox checkBoxAutoChange3;
         private System.Windows.Forms.Button btnInformatin3;
         private System.Windows.Forms.ComboBox cbAutoChange3;
+        private System.Windows.Forms.TextBox txtManuelExtension;
     }
 }
 

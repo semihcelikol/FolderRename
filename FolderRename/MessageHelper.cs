@@ -7,8 +7,10 @@ using System.Windows.Forms;
 
 namespace FolderRename
 {
-    class GeneralProcesses
+    class MessageHelper
     {
+        #region Mesaj ile ilgili classlar.
+
         /// <summary>
         /// Ekrana bilgi mesajı çıkartır.
         /// </summary>
@@ -38,5 +40,6 @@ namespace FolderRename
         {
             MessageBox.Show(_message, _caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+        #endregion
     }
 }
