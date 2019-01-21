@@ -480,11 +480,6 @@ namespace FolderRename
             }
         }
 
-        private void panelMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void checkBoxManuel2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxManuel2.Checked)
