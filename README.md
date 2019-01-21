@@ -9,7 +9,7 @@ Tek farkı birden fazla dosyayı listeye atıp, oradan tek tek ilerleyip daha h�
 
 <h3>2- Manuel Değişim 2</h3>
 Bu özellik ile istediğimiz formatta isimleri değiştirebilirsiniz. Örneğin; N tane dosyanın isimlerini AA_1, AA_2, AA_3... gibi.
-![](http://semihcelikol.com/wp-content/uploads/2019/01/FolderRenameManuelChange2.gif)
+![Manuel Değişim 2](http://semihcelikol.com/wp-content/uploads/2019/01/FolderRenameManuelChange2.gif)
 
 <h3>2- Otomatik Sıralı Değişim 1</h3>
 Seçtiğiniz dosyaların başına, seçtiğiniz sayıdan başlayarak, tüm dosya isimlerinin başına o sayıyı koyup ekler.
