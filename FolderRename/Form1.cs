@@ -269,7 +269,6 @@ namespace FolderRename
 
                     if (cbManuel2Change.Text != string.Empty && listBoxFirstFile.Items.Count != 0)
                     {
-                        //Seçili dosyalarda dönüp, sırayla dosya isimlerinin başına sayacı yazar.
                         foreach (string item in listBoxFirstFile.Items)
                         {
                             fi = new FileInfo(item);
