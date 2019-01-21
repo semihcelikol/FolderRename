@@ -46,6 +46,11 @@ namespace FolderRename
                 this.manuelChange();
             }
 
+            if (panelManuel2.Enabled)
+            {
+                this.manuelChange2();
+            }
+
             if (panelAuto1.Enabled)
             {
                 this.autoChange1();
@@ -251,6 +256,52 @@ namespace FolderRename
             
         }
 
+        /// <summary>
+        /// Manuel isim değiştirme işlemleri 2
+        /// </summary>
+        private void manuelChange2()
+        {
+            try
+            {
+                if (checkBoxManuel2.Checked)
+                {
+                    int autoChangeValue = Convert.ToInt32(cbManuel2Change.Text);
+
+                    if (cbManuel2Change.Text != string.Empty && listBoxFirstFile.Items.Count != 0)
+                    {
+                        //Seçili dosyalarda dönüp, sırayla dosya isimlerinin başına sayacı yazar.
+                        foreach (string item in listBoxFirstFile.Items)
+                        {
+                            fi = new FileInfo(item);
+                            fromFile = fi.FullName;
+                            fileName = fi.Name;
+                            directoryName = fi.DirectoryName;
+                            string fiExtension = fi.Extension;
+
+                            toFile = txtManuel2.Text.ToString() + txtManuelExtension2.Text + autoChangeValue;
+                            toFile = directoryName + @"\" + toFile + fiExtension;
+
+                            File.Move(fromFile, toFile);
+
+                            autoChangeValue++;
+                            listBoxChangeFile.Items.Add(toFile);
+                        }
+                        messageHelper.messageInformationShow("Dosya isimleri Başarılı bir şekilde değiştirildi.", "Bilgi");
+                        cbAutoChange1.Text = string.Empty;
+                        listBoxFirstFile.Items.Clear();
+                    }
+                    else
+                    {
+                        messageHelper.messageErrorShow("Boş geçtiniz", "HATA");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                messageHelper.messageErrorShow(ex.Message, "Hata");
+            }
+        }
+
         private void listBoxFirstFile_MouseClick(object sender, MouseEventArgs e)
         {
             this.txtManuelTextWrite();
@@ -306,6 +357,8 @@ namespace FolderRename
             listBoxFirstFile.Items.Clear();
             listBoxChangeFile.Items.Clear();
             txtManuel.Clear();
+            txtManuel2.Clear();
+            txtManuelExtension2.Clear();
         }
 
         private void btnInformatin1_Click(object sender, EventArgs e)
@@ -322,22 +375,25 @@ namespace FolderRename
         {
             checkBoxManuel.Checked = true;
             panelManuel.Enabled = true;
+            panelManuel2.Enabled = false;
 
             panelAuto1.Enabled = false;
             panelAuto2.Enabled = false;
             panelAuto3.Enabled = false;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxManuel_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxManuel.Checked)
             {
+                panelManuel2.Enabled = false;
                 panelAuto1.Enabled = false;
                 panelAuto2.Enabled = false;
                 panelAuto3.Enabled = false;
             }
             else
             {
+                panelManuel2.Enabled = true;
                 panelAuto1.Enabled = true;
                 panelAuto2.Enabled = true;
                 panelAuto3.Enabled = true;
@@ -349,12 +405,14 @@ namespace FolderRename
             if (checkBoxAutoChange1.Checked)
             {
                 panelManuel.Enabled = false;
+                panelManuel2.Enabled = false;
                 panelAuto2.Enabled = false;
                 panelAuto3.Enabled = false;
             }
             else
             {
                 panelManuel.Enabled = true;
+                panelManuel2.Enabled = true;
                 panelAuto2.Enabled = true;
                 panelAuto3.Enabled = true;
             }
@@ -365,12 +423,14 @@ namespace FolderRename
             if (checkBoxAutoChange2.Checked)
             {
                 panelManuel.Enabled = false;
+                panelManuel2.Enabled = false;
                 panelAuto1.Enabled = false;
                 panelAuto3.Enabled = false;
             }
             else
             {
                 panelManuel.Enabled = true;
+                panelManuel2.Enabled = true;
                 panelAuto1.Enabled = true;
                 panelAuto3.Enabled = true;
             }
@@ -386,12 +446,14 @@ namespace FolderRename
             if (checkBoxAutoChange3.Checked)
             {
                 panelManuel.Enabled = false;
+                panelManuel2.Enabled = false;
                 panelAuto1.Enabled = false;
                 panelAuto2.Enabled = false;
             }
             else
             {
                 panelManuel.Enabled = true;
+                panelManuel2.Enabled = true;
                 panelAuto1.Enabled = true;
                 panelAuto2.Enabled = true;
             }
@@ -416,6 +478,34 @@ namespace FolderRename
             {
                 this.txtManuelTextWrite();
             }
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void checkBoxManuel2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxManuel2.Checked)
+            {
+                panelManuel.Enabled = false;
+                panelAuto1.Enabled = false;
+                panelAuto2.Enabled = false;
+                panelAuto3.Enabled = false;
+            }
+            else
+            {
+                panelManuel.Enabled = true;
+                panelAuto1.Enabled = true;
+                panelAuto2.Enabled = true;
+                panelAuto3.Enabled = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            messageHelper.messageInformationShow("Örneğin Dosya ismi:AA, Ayraç:_ ve Başlangıç sayısı :1 ise AA_1,AA_2.. şeklinde ilerleyerek tüm isimleri değiştirir.", "Nedir ?");
         }
 
         private void btnInformatin3_Click(object sender, EventArgs e)
