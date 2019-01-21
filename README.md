@@ -7,6 +7,10 @@ Dosya isimlerini değiştirme programı.(Windows Form Application)
 Windowsta dosyaya sağ tıklayıp isim değiştirmenin aynısı.
 Tek farkı birden fazla dosyayı listeye atıp, oradan tek tek ilerleyip daha hızlı değiştirebilirsiniz.
 
+<h3>2- Manuel Değişim 2</h3>
+Bu özellik ile istediğimiz formatta isimleri değiştirebilirsiniz. Örneğin; N tane dosyanın isimlerini AA_1, AA_2, AA_3... gibi.
+![](http://semihcelikol.com/wp-content/uploads/2019/01/FolderRenameManuelChange2.gif)
+
 <h3>2- Otomatik Sıralı Değişim 1</h3>
 Seçtiğiniz dosyaların başına, seçtiğiniz sayıdan başlayarak, tüm dosya isimlerinin başına o sayıyı koyup ekler.
 "Örneğin 1'i seçtiğiniz ve 10 tane dosyanız var. Bu dosyaların başına 1'den başlayıp 1dosya,2dosya,3dosya... yaparak 10dosya yazıp bitirir."
