@@ -26,3 +26,13 @@ C:\Users\Semih\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename
 C:\Users\Semih\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.exe
 C:\Users\Semih\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.pdb
 C:\Users\Semih\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.csprojAssemblyReference.cache
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\bin\Debug\FolderRename.exe.config
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\bin\Debug\FolderRename.exe
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\bin\Debug\FolderRename.pdb
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.csprojAssemblyReference.cache
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.Form1.resources
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.Properties.Resources.resources
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.csproj.GenerateResource.cache
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.csproj.CoreCompileInputs.cache
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.exe
+C:\Users\Sem\Documents\GitHub\FolderRename\FolderRename\obj\Debug\FolderRename.pdb

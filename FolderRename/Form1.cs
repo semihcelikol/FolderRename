@@ -348,7 +348,7 @@ namespace FolderRename
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            messageHelper.messageInformationShow("Ücretsiz Dosya isimlerini değiştirme programıdır.\nVersion 3\nsemihcelikol.com", "HAKKINDA");
+            messageHelper.messageInformationShow("Ücretsiz dosya isimlerini değiştirme programıdır.\nVersion 04\nsemihcelikol.com", "HAKKINDA");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -358,6 +358,10 @@ namespace FolderRename
             txtManuel.Clear();
             txtManuel2.Clear();
             txtManuelExtension2.Clear();
+            cbAutoChange1.Text = "";
+            cbAutoChange2.Text = "";
+            cbAutoChange3.Text = "";
+            cbManuel2Change.Text = "";
         }
 
         private void btnInformatin1_Click(object sender, EventArgs e)
@@ -497,7 +501,7 @@ namespace FolderRename
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnManuelInfo_Click(object sender, EventArgs e)
         {
             messageHelper.messageInformationShow("Örneğin Dosya ismi:AA, Ayraç:_ ve Başlangıç sayısı :1 ise AA_1,AA_2.. şeklinde ilerleyerek tüm isimleri değiştirir.", "Nedir ?");
         }

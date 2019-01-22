@@ -46,10 +46,13 @@
             this.lblWarning = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelManuel2 = new System.Windows.Forms.Panel();
+            this.btnManuelInfo = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbManuel2Change = new System.Windows.Forms.ComboBox();
             this.lbl2manuel2 = new System.Windows.Forms.Label();
             this.lblManuel2 = new System.Windows.Forms.Label();
-            this.txtManuelExtension2 = new System.Windows.Forms.TextBox();
             this.checkBoxManuel2 = new System.Windows.Forms.CheckBox();
+            this.txtManuelExtension2 = new System.Windows.Forms.TextBox();
             this.txtManuel2 = new System.Windows.Forms.TextBox();
             this.panelAuto3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,9 +81,6 @@
             this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hakkındaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cbManuel2Change = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.grpBoxContact.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelManuel2.SuspendLayout();
@@ -253,7 +253,7 @@
             // 
             // panelManuel2
             // 
-            this.panelManuel2.Controls.Add(this.button1);
+            this.panelManuel2.Controls.Add(this.btnManuelInfo);
             this.panelManuel2.Controls.Add(this.label3);
             this.panelManuel2.Controls.Add(this.cbManuel2Change);
             this.panelManuel2.Controls.Add(this.lbl2manuel2);
@@ -265,6 +265,44 @@
             this.panelManuel2.Name = "panelManuel2";
             this.panelManuel2.Size = new System.Drawing.Size(499, 62);
             this.panelManuel2.TabIndex = 36;
+            // 
+            // btnManuelInfo
+            // 
+            this.btnManuelInfo.Location = new System.Drawing.Point(127, 3);
+            this.btnManuelInfo.Name = "btnManuelInfo";
+            this.btnManuelInfo.Size = new System.Drawing.Size(27, 23);
+            this.btnManuelInfo.TabIndex = 40;
+            this.btnManuelInfo.Text = "?";
+            this.toolTip1.SetToolTip(this.btnManuelInfo, "Bu nedir, öğrenin");
+            this.btnManuelInfo.UseVisualStyleBackColor = true;
+            this.btnManuelInfo.Click += new System.EventHandler(this.btnManuelInfo_Click);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(307, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 17);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Başlangıç sayısı";
+            // 
+            // cbManuel2Change
+            // 
+            this.cbManuel2Change.FormattingEnabled = true;
+            this.cbManuel2Change.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cbManuel2Change.Location = new System.Drawing.Point(399, 30);
+            this.cbManuel2Change.Name = "cbManuel2Change";
+            this.cbManuel2Change.Size = new System.Drawing.Size(39, 21);
+            this.cbManuel2Change.TabIndex = 38;
             // 
             // lbl2manuel2
             // 
@@ -282,13 +320,6 @@
             this.lblManuel2.TabIndex = 0;
             this.lblManuel2.Text = "Dosya ismi";
             // 
-            // txtManuelExtension2
-            // 
-            this.txtManuelExtension2.Location = new System.Drawing.Point(241, 30);
-            this.txtManuelExtension2.Name = "txtManuelExtension2";
-            this.txtManuelExtension2.Size = new System.Drawing.Size(52, 20);
-            this.txtManuelExtension2.TabIndex = 36;
-            // 
             // checkBoxManuel2
             // 
             this.checkBoxManuel2.AutoSize = true;
@@ -301,6 +332,13 @@
         "eğiştirir.");
             this.checkBoxManuel2.UseVisualStyleBackColor = true;
             this.checkBoxManuel2.CheckedChanged += new System.EventHandler(this.checkBoxManuel2_CheckedChanged);
+            // 
+            // txtManuelExtension2
+            // 
+            this.txtManuelExtension2.Location = new System.Drawing.Point(241, 30);
+            this.txtManuelExtension2.Name = "txtManuelExtension2";
+            this.txtManuelExtension2.Size = new System.Drawing.Size(52, 20);
+            this.txtManuelExtension2.TabIndex = 36;
             // 
             // txtManuel2
             // 
@@ -596,43 +634,6 @@
             this.hakkındaToolStripMenuItem.Text = "Hakkında";
             this.hakkındaToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // cbManuel2Change
-            // 
-            this.cbManuel2Change.FormattingEnabled = true;
-            this.cbManuel2Change.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.cbManuel2Change.Location = new System.Drawing.Point(399, 30);
-            this.cbManuel2Change.Name = "cbManuel2Change";
-            this.cbManuel2Change.Size = new System.Drawing.Size(39, 21);
-            this.cbManuel2Change.TabIndex = 38;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(307, 32);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 17);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Başlangıç sayısı";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(127, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 23);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "?";
-            this.toolTip1.SetToolTip(this.button1, "Bu nedir, öğrenin");
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -720,7 +721,7 @@
         private System.Windows.Forms.TextBox txtManuel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbManuel2Change;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnManuelInfo;
     }
 }
 
